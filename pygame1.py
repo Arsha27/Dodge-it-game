@@ -19,7 +19,7 @@ dogeImg= pygame.image.load('doge.png')
 def doge(x,y):
     gameDisplay.blit(dogeImg,(x,y))
 
-x = (display_width * 0.45)
+x = (display_width * 0.40)
 y = (display_height * 0.8)
 
 crashed = False
