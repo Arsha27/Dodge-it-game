@@ -2,11 +2,25 @@ import pygame
 
 pygame.init()
 
-gameDisplay = pygame.display.set_mode((800,600))
+display_width= 800
+display_height= 600
+
+black = (0,0,0)
+white = (255,255,255)
+red= (255,0,0)
+
+gameDisplay = pygame.display.set_mode((display_width,display_height))
 
 pygame.display.set_caption('Dodge it')
 
 clock = pygame.time.Clock()
+
+dogeImg= pygame.image.load('doge.png')
+def doge(x,y):
+    gameDisplay.blit(dogeImg,(x,y))
+
+x = (display_width * 0.45)
+y = (display_height * 0.8)
 
 crashed = False
 
@@ -16,9 +30,10 @@ while not crashed:
         if event.type == pygame.QUIT:
             crashed = True
 
-        print(event)
+    gameDisplay.fill(white)
+    doge(x,y)
     pygame.display.update()
-
     clock.tick(60)
+    
 pygame.quit()
 quit()
