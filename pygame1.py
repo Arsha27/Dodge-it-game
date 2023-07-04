@@ -83,11 +83,10 @@ def game_loop():
         gameDisplay.fill(mint)
         coconut(coco_startx,coco_starty)
         coco_starty += coco_speed
-        
         doge(x,y,dog_pos)
 
         if x > display_width - dog_width or x < 0:
-            crash()    #crashside
+            x_change = 0
         
         if coco_starty > display_height:
             coco_starty = 0 - coco_height
