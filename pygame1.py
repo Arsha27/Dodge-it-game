@@ -1,5 +1,6 @@
 import pygame
 import time
+import random
 
 pygame.init()
 
@@ -18,6 +19,11 @@ clock = pygame.time.Clock()
 
 dogeImg= pygame.image.load('doge.png')
 dogeImg2= pygame.image.load('doge2.png')
+cocoImg= pygame.image.load('coconut1.png')
+
+def coconut(x,y):        #thing
+    gameDisplay.blit(cocoImg,(x,y))
+    
 def doge(x,y,dog_pos):
     if dog_pos == 0:
         gameDisplay.blit(dogeImg,(x,y))
@@ -45,6 +51,14 @@ def game_loop():
     y = (display_height * 0.75)
     x_change = 0
     dog_pos = 0
+    dog_width = 159
+    coco_startx = random.randrange(0,display_width)
+    coco_starty = -600
+    coco_speed = 7
+    coco_height = 74
+    coco_width = 74
+    #thing width-height?
+    
     gameExit = False
 
     while not gameExit:
@@ -67,11 +81,23 @@ def game_loop():
         x += x_change 
 
         gameDisplay.fill(mint)
+        coconut(coco_startx,coco_starty)
+        coco_starty += coco_speed
+        
         doge(x,y,dog_pos)
 
-        if x > display_width - 159 or x < 0:
-            crash()
-            
+        if x > display_width - dog_width or x < 0:
+            crash()    #crashside
+        
+        if coco_starty > display_height:
+            coco_starty = 0 - coco_height
+            coco_startx = random.randrange(0,display_width)
+
+        if y < coco_starty+coco_height:
+            print('y crossover')
+            if x > coco_startx and x < coco_startx + coco_width or x+dog_width > coco_startx and x + dog_width < coco_startx+coco_width:
+                print('x crossover')
+                crash()
         pygame.display.update()
         clock.tick(60)
 
