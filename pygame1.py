@@ -2,6 +2,10 @@ import pygame
 import time
 import random
 
+
+#DODGE IT game
+#  bug:1 initial coconut fails game exit
+
 pygame.init()
 
 display_width= 800
@@ -54,7 +58,7 @@ def game_loop():
     dog_width = 159
     coco_startx = random.randrange(0,display_width)
     coco_starty = -600
-    coco_speed = 7
+    coco_speed = 10
     coco_height = 74
     coco_width = 74
     #thing width-height?
