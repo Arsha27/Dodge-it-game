@@ -64,7 +64,7 @@ def game_loop():
     dog_width = 159
     coco_startx = random.randrange(0,display_width)
     coco_starty = -600
-    coco_speed = 10
+    coco_speed = 6
     coco_height = 74
     coco_width = 74
     #thing width-height?
@@ -105,12 +105,13 @@ def game_loop():
             coco_starty = 0 - coco_height
             coco_startx = random.randrange(0,display_width)
             dodged += 1
-            coco_speed += 1
+            coco_speed += 0.5
+            
 
         if y < coco_starty+coco_height:
-            print('y crossover')
+           # print('y crossover')
             if x > coco_startx and x < coco_startx + coco_width or x+dog_width > coco_startx and x + dog_width < coco_startx+coco_width:
-                print('x crossover')
+              #  print('x crossover')
                 crash()
         pygame.display.update()
         clock.tick(60)
