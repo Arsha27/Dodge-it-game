@@ -5,6 +5,7 @@ import random
 
 #DODGE IT game
 #  bug:1 initial coconut fails game exit
+# need a font change
 
 pygame.init()
 
@@ -24,7 +25,12 @@ clock = pygame.time.Clock()
 dogeImg= pygame.image.load('doge.png')
 dogeImg2= pygame.image.load('doge2.png')
 cocoImg= pygame.image.load('coconut1.png')
+beach= pygame.image.load('beach.png')
 
+def coconut_dodge(count):
+    font = pygame.font.SysFont(None,25)
+    text = font.render("Dodged : " +str(count), True, black)
+    gameDisplay.blit(text,(0,0))
 def coconut(x,y):        #thing
     gameDisplay.blit(cocoImg,(x,y))
     
@@ -62,6 +68,7 @@ def game_loop():
     coco_height = 74
     coco_width = 74
     #thing width-height?
+    dodged = 0
     
     gameExit = False
 
@@ -84,10 +91,12 @@ def game_loop():
 
         x += x_change 
 
-        gameDisplay.fill(mint)
+        #gameDisplay.fill(mint) #game-background
+        gameDisplay.blit(beach,(0,0))
         coconut(coco_startx,coco_starty)
         coco_starty += coco_speed
         doge(x,y,dog_pos)
+        coconut_dodge(dodged)
 
         if x > display_width - dog_width or x < 0:
             x_change = 0
@@ -95,6 +104,8 @@ def game_loop():
         if coco_starty > display_height:
             coco_starty = 0 - coco_height
             coco_startx = random.randrange(0,display_width)
+            dodged += 1
+            coco_speed += 1
 
         if y < coco_starty+coco_height:
             print('y crossover')
