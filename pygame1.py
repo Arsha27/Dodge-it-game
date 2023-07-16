@@ -1,4 +1,5 @@
 import pygame
+from pygame import mixer
 import time
 import random
 
@@ -24,8 +25,12 @@ clock = pygame.time.Clock()
 
 dogeImg= pygame.image.load('doge.png')
 dogeImg2= pygame.image.load('doge2.png')
-cocoImg= pygame.image.load('coconut12.png')
+cocoImg= pygame.image.load('coconut1.png') #12
 beach= pygame.image.load('beach.png')
+
+mixer.init()
+mixer.music.load('bgm.ogg') #beach music
+mixer.music.play()
 
 def coconut_dodge(count):
     font = pygame.font.SysFont(None,25)
@@ -62,8 +67,8 @@ def game_loop():
     x_change = 0
     dog_pos = 0
     dog_width = 159
-    coco_startx = random.randrange(0,700)
-    coco_starty = -600
+    coco_startx = random.randrange(0,650)
+    coco_starty = -500
     coco_speed = 7
     coco_height = 74
     coco_width = 74
@@ -111,6 +116,7 @@ def game_loop():
             print('y crossover')
             if x > coco_startx and x < coco_startx + coco_width or x+dog_width > coco_startx and x + dog_width < coco_startx+coco_width:
                 print('x crossover')
+                mixer.music.stop() #beach music stop
                 crash()
         pygame.display.update()
         clock.tick(60)
