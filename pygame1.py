@@ -65,10 +65,10 @@ def message_display(text):
     
 def game_loop():
     x = (display_width * 0.40)
-    y = (display_height * 0.75)
+    y = (display_height * 0.70)
     x_change = 0
     dog_pos = 0
-    dog_width = 159
+    dog_width = 140
     coco_startx = random.randrange(0,650)
     coco_starty = -500
     coco_speed = 7
@@ -117,7 +117,9 @@ def game_loop():
 
         if y < coco_starty+coco_height:
             print('y crossover')
-            if x > coco_startx and x < coco_startx + coco_width or x+dog_width > coco_startx and x + dog_width < coco_startx+coco_width:
+            #if x > coco_startx and x < coco_startx + coco_width or x+dog_width > coco_startx and x + dog_width < coco_startx+coco_width :
+            #if (x + dog_width > coco_startx and x < coco_startx + coco_width) or (x < coco_startx and x + dog_width > coco_startx + coco_width):
+            if x < coco_startx + coco_width and x + dog_width > coco_startx:
                 print('x crossover')
                 crash()
         pygame.display.update()
