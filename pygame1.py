@@ -111,7 +111,7 @@ def game_loop():
         
         if coco_starty > display_height:
             coco_starty = 0 - coco_height
-            coco_startx = random.randrange(0,display_width)
+            coco_startx = random.randrange(0,750)
             dodged += 1
             coco_speed += 0.5
 
