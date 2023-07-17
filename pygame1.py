@@ -30,7 +30,6 @@ beach= pygame.image.load('beach.png')
 
 mixer.init()
 mixer.music.load('bgm.ogg') #beach music
-mixer.music.play(-1) #loops
 hit_sound = pygame.mixer.Sound('hit.ogg') #coco-hits-sound
 
 def coconut_dodge(count):
@@ -46,6 +45,8 @@ def doge(x,y,dog_pos):
     if dog_pos == 1:
         gameDisplay.blit(dogeImg2,(x,y))
 def crash():
+    mixer.music.pause() #beach music stop
+    hit_sound.play() #sound
     message_display('Game Over')
      
 def text_objects(text, font):
@@ -78,7 +79,7 @@ def game_loop():
    
     
     gameExit = False
-    pygame.mixer.unpause()
+    mixer.music.play(-1) #loops
     while not gameExit:
 
         for event in pygame.event.get():
@@ -118,8 +119,6 @@ def game_loop():
             print('y crossover')
             if x > coco_startx and x < coco_startx + coco_width or x+dog_width > coco_startx and x + dog_width < coco_startx+coco_width:
                 print('x crossover')
-                mixer.music.pause() #beach music stop
-                hit_sound.play() #sound
                 crash()
         pygame.display.update()
         clock.tick(60)
