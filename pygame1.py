@@ -60,7 +60,7 @@ def message_display(text):
     gameDisplay.blit(TextSurf, TextRect)
     
     pygame.display.update()
-    time.sleep(4)
+    time.sleep(6)
     game_loop()
     
 def game_loop():
